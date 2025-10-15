@@ -2,16 +2,18 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\StoryController;
 use App\Http\Controllers\HomeController;
 
-Route::get('/', function () {
-    return view('home', [
-        'naam' => 'Lina',
-        'level' => 5,
-        'woorden' => ['halló', 'vriend', 'stad']
-    ]);
-})->name('home');
+//Route::get('/', function () {
+//    return view('home', [StoryController::class, 'index']);
+//})->name('home');
+
+Route::get('/', [StoryController::class, 'index'])
+    ->name('home');
+Route::get('/story/{id}', [StoryController::class, 'findStory'])
+    ->name('story');
+
 
 Route::get('/contact', function () {
     return view('contact');

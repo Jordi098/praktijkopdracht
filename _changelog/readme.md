@@ -2,7 +2,7 @@
 
 Installatie voor Laravel gedaan
 
-## Maandag 14 Oktober
+## Maandag 13 Oktober
 
 ![img.png](img/img.png)
 
@@ -17,5 +17,20 @@ op basis van de functionaliteit die de website moet hebben.
 - Als gebruiker wil ik verhalen onder categorieën selecteren.
 - Als gebruiker wil ik verhalen kunnen zoeken op basis van zoekterm of titel.
 - Als beheerder wil ik verhalen kunnen verwijderen.
-- Als gebruiker wil ik verhalen onder categorieën kunnen plaatsen. 
+- Als gebruiker wil ik verhalen onder categorieën kunnen plaatsen.
 
+## Dinsdag 14 Oktober
+
+De nieuwe ERD:
+![img_1.png](img/img_1.png)
+
+Daarnaast heb ik nog een paar componants aan gemaakt.
+
+## Woensdag 15 Oktober
+
+veranderingen:
+
+- models aangemaakt.
+- stories aangemaakt in mijn database.
+- detail pagina
+- index pagina
