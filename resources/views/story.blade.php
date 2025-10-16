@@ -6,7 +6,10 @@
                     <div class="p-6">
                         <h1 class="font-bold">{{ $story->name }}</h1>
                         <p>{{ $story->text }}</p>
-                        <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
+                        <div class="pt-2">
+                            <p>Category: {{ $story->category->name  }}</p>
+                        </div>
+                        <x-nav-link :href="route('story.index')" :active="request()->routeIs('home')">
                             {{ __('Terug') }}
                         </x-nav-link>
                     </div>

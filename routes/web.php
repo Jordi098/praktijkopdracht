@@ -9,10 +9,17 @@ use App\Http\Controllers\HomeController;
 //    return view('home', [StoryController::class, 'index']);
 //})->name('home');
 
-Route::get('/', [StoryController::class, 'index'])
-    ->name('home');
-Route::get('/story/{id}', [StoryController::class, 'findStory'])
-    ->name('story');
+//Route::get('/', [StoryController::class, 'index'])
+//    ->name('home');
+//Route::get('/story/{story}', [StoryController::class, 'findStory'])
+//    ->name('story');
+//
+//Route::get('/story/create', [StoryController::class, 'create'])
+//    ->name('create');
+//
+//Route::get('/story/store', [StoryController::class, 'store'])
+//    ->name('store');
+Route::resource('story', StoryController::class);
 
 
 Route::get('/contact', function () {

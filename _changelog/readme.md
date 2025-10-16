@@ -28,9 +28,19 @@ Daarnaast heb ik nog een paar componants aan gemaakt.
 
 ## Woensdag 15 Oktober
 
-veranderingen:
+Veranderingen:
 
 - models aangemaakt.
 - stories aangemaakt in mijn database.
 - detail pagina
 - index pagina
+
+## Donderdag 16 Oktober
+
+Veranderingen:
+
+- controllers aangemaakt
+- routes aangemaakt
+- views aangemaakt
+- stories kunnen plaatsen
+- stories kunnen lezen
