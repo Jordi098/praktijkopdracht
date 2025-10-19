@@ -26,6 +26,12 @@ class StoryController extends Controller
         return view('create', compact('categories'));
     }
 
+    public function edit(Story $story)
+    {
+        $categories = Category::all();
+        return view('edit', compact('story', 'categories'));
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -40,5 +46,25 @@ class StoryController extends Controller
         $story->save();
 
         return redirect()->route('story.index');
+    }
+
+    public function update(Request $request, Story $story)
+    {
+        if (Auth::id() !== $story->user_id) {
+            abort(403);
+        }
+
+        $request->validate([
+            'title' => 'required|max:100',
+            'text' => 'required',
+            'category_id' => 'nullable|exists:categories,id',
+        ]);
+
+        $story->name = $request->input('title');
+        $story->text = $request->input('text');
+        $story->category_id = $request->input('category_id');
+        $story->save();
+
+        return redirect()->route('story.show', $story)->with('success', 'Story updated.');
     }
 }

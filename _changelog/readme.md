@@ -44,3 +44,9 @@ Veranderingen:
 - views aangemaakt
 - stories kunnen plaatsen
 - stories kunnen lezen
+
+## Zondag 19 Oktober
+
+Veradneringen:
+
+- stories kan je veranderen

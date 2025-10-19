@@ -12,6 +12,7 @@
                         <x-nav-link :href="route('story.index')" :active="request()->routeIs('home')">
                             {{ __('Terug') }}
                         </x-nav-link>
+
                     </div>
                 </div>
             </div>

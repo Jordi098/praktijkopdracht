@@ -13,6 +13,10 @@
                             <x-nav-link :href="route('story.show', $story->id)" :active="request()->routeIs('story')">
                                 {{ __('Meer') }}
                             </x-nav-link>
+                            <x-nav-link :href="route('story.edit', $story->id)"
+                                        :active="request()->routeIs('story.edit')">
+                                {{ __('Edit') }}
+                            </x-nav-link>
                         </div>
                     @endforeach
                 </div>
