@@ -5,9 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StoryController;
 use App\Http\Controllers\HomeController;
 
-//Route::get('/', function () {
-//    return view('home', [StoryController::class, 'index']);
-//})->name('home');
+Route::get('/', [StoryController::class, 'index'])->name('home');
 
 //Route::get('/', [StoryController::class, 'index'])
 //    ->name('home');

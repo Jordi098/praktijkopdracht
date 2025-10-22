@@ -67,4 +67,15 @@ class StoryController extends Controller
 
         return redirect()->route('story.show', $story)->with('success', 'Story updated.');
     }
+
+    public function destroy(Story $story)
+    {
+        if (Auth::id() !== $story->user_id) {
+            abort(403);
+        }
+
+        $story->delete();
+
+        return redirect()->route('story.index')->with('success', 'Story verwijderd.');
+    }
 }

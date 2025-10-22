@@ -47,6 +47,12 @@ Veranderingen:
 
 ## Zondag 19 Oktober
 
-Veradneringen:
+Veranderingen:
 
 - stories kan je veranderen
+
+## Maandag 22 Oktober
+
+Veranderingen:
+
+- je kan nu stories verwijderen
