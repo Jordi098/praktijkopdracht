@@ -24,6 +24,9 @@
                     <x-nav-link :href="route('about')" :active="request()->routeIs('about')">
                         {{ __('About') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('story.create')" :active="request()->routeIs('story.create')">
+                        {{ __('Create') }}
+                    </x-nav-link>
                 </div>
             </div>
 

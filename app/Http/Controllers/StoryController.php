@@ -9,10 +9,29 @@ use Illuminate\Support\Facades\Auth;
 
 class StoryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $stories = Story::all();
-        return view('home', compact('stories'));
+        $search = $request->input('q');
+        $activeCategory = $request->input('category');
+
+        $query = Story::with('category')->latest();
+
+        if (!empty($search)) {
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                    ->orWhere('text', 'like', "%{$search}%");
+            });
+        }
+
+        if (!empty($activeCategory)) {
+            $query->where('category_id', $activeCategory);
+        }
+
+        $stories = $query->get();
+
+        $categories = Category::all();
+
+        return view('home', compact('stories', 'search', 'categories', 'activeCategory'));
     }
 
     public function show(Story $story)

@@ -51,8 +51,15 @@ Veranderingen:
 
 - stories kan je veranderen
 
-## Maandag 22 Oktober
+## Woensdag 22 Oktober
 
 Veranderingen:
 
 - je kan nu stories verwijderen
+
+## Vrijdag 24 Oktober
+
+Veranderingen:
+
+- je kan nu zoeken op stories
+- je kan nu stories filteren op categorieën
