@@ -63,3 +63,12 @@ Veranderingen:
 
 - je kan nu zoeken op stories
 - je kan nu stories filteren op categorieën
+
+## Zondag 26 Oktober
+
+Veranderingen:
+
+- je kan nu inloggen als beheerder
+- je kan nu stories activeren als beheerder
+- je kan nu stories deactiveren als beheerder
+- je kan nu stories bekijken die in de wacht staan als beheerder

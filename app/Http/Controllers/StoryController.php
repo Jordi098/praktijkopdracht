@@ -27,6 +27,11 @@ class StoryController extends Controller
             $query->where('category_id', $activeCategory);
         }
 
+        // Only show published stories to non-admins
+        if (!auth()->check() || !auth()->user()->is_admin) {
+            $query->where('published', true);
+        }
+
         $stories = $query->get();
 
         $categories = Category::all();
@@ -62,6 +67,10 @@ class StoryController extends Controller
         $story->text = $request->input('text');
         $story->category_id = $request->input('category_id');
         $story->user_id = Auth::id();
+
+        // If creator is admin, publish immediately; otherwise keep unpublished for approval
+        $story->published = (auth()->check() && auth()->user()->is_admin) ? true : false;
+
         $story->save();
 
         return redirect()->route('story.index');

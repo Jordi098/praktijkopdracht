@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StoryController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 
 Route::get('/', [StoryController::class, 'index'])->name('home');
@@ -35,6 +36,13 @@ Route::get('/dashboard', function () {
 
 
 Route::middleware('auth')->group(function () {
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+    Route::post('/admin/story/{story}/approve', [AdminController::class, 'approve'])->name('admin.story.approve');
+    Route::post('/admin/story/{story}/reject', [AdminController::class, 'reject'])->name('admin.story.reject');
+    Route::post('/admin/story/{id}/restore', [AdminController::class, 'restore'])->name('admin.story.restore');
+    Route::post('/admin/story/{id}/force-delete', [AdminController::class, 'forceDelete'])->name('admin.story.forceDelete');
+
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

@@ -27,6 +27,15 @@
                     <x-nav-link :href="route('story.create')" :active="request()->routeIs('story.create')">
                         {{ __('Create') }}
                     </x-nav-link>
+
+                    @auth
+                        @if(auth()->user()->is_admin)
+                            <a href="{{ route('admin.index') }}"
+                               class="ml-4 inline-flex items-center px-3 py-1 rounded-full bg-yellow-600 text-black hover:bg-yellow-700">
+                                Admin
+                            </a>
+                        @endif
+                    @endauth
                 </div>
             </div>
 
