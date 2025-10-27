@@ -72,3 +72,9 @@ Veranderingen:
 - je kan nu stories activeren als beheerder
 - je kan nu stories deactiveren als beheerder
 - je kan nu stories bekijken die in de wacht staan als beheerder
+
+## Maandag 27 Oktober
+
+Veranderingen:
+
+- Auth systeem verbeterd

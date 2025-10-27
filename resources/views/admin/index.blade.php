@@ -16,7 +16,7 @@
                             <div class="bg-gray-900/40 p-4 rounded border border-gray-800 flex justify-between">
                                 <div>
                                     <div class="text-lg font-semibold text-white">{{ $story->name }}</div>
-                                    <div class="text-xs text-gray-400">Door: {{ $story->user_name ?? 'Onbekend' }}
+                                    <div class="text-xs text-white">Door: {{ $story->user_name ?? 'Onbekend' }}
                                         • {{ $story->category->name ?? '-' }}</div>
                                     <div class="mt-2 text-gray-200 whitespace-pre-line text-sm">{{ $story->text }}</div>
                                 </div>
@@ -50,9 +50,9 @@
                                 class="bg-gray-900/30 p-4 rounded border border-gray-800 flex justify-between items-start">
                                 <div>
                                     <div class="text-lg font-semibold text-white">{{ $story->name }}</div>
-                                    <div class="text-xs text-gray-400">Door: {{ $story->user_name ?? 'Onbekend' }}
+                                    <div class="text-xs text-white">Door: {{ $story->user_name ?? 'Onbekend' }}
                                         • {{ $story->category->name ?? '-' }}</div>
-                                    <div class="mt-2 text-gray-200 whitespace-pre-line text-sm">{{ $story->text }}</div>
+                                    <div class="mt-2 text-white whitespace-pre-line text-sm">{{ $story->text }}</div>
                                     <div class="text-xs text-gray-500 mt-2">Verwijderd
                                         op: {{ $story->deleted_at?->format('Y-m-d H:i') }}</div>
                                 </div>
@@ -60,7 +60,8 @@
                                 <div class="ml-4 flex flex-col gap-6">
                                     <form action="{{ route('admin.story.restore', $story->id) }}" method="POST">
                                         @csrf
-                                        <button class="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700">
+                                        <button
+                                            class="px-3 py-1 bg-green-500 text-white rounded hover:bg-white hover:text-green-500 hover:border-green-500">
                                             Herstellen
                                         </button>
                                     </form>
@@ -68,7 +69,8 @@
                                     <form action="{{ route('admin.story.forceDelete', $story->id) }}" method="POST"
                                           onsubmit="return confirm('Permanente verwijdering: weet je het zeker?');">
                                         @csrf
-                                        <button class="px-3 py-1 bg-red-600 text-white rounded ">
+                                        <button
+                                            class="px-3 py-1 bg-red-600 text-white rounded hover:bg-white hover:text-red-600 hover:border-red-600">
                                             Permanent verwijderen
                                         </button>
                                     </form>

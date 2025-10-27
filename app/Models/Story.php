@@ -11,12 +11,10 @@ class Story extends Model
     use HasFactory;
     use SoftDeletes;
 
-    // ensure published is treated as boolean
     protected $casts = [
         'published' => 'boolean',
     ];
 
-    // optional default value (migrations also set default)
     protected $attributes = [
         'published' => true,
     ];
