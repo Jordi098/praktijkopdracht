@@ -89,3 +89,4 @@ Veranderingen:
 - validatie toegevoegd aan forms voor de images
 - tabs voor adminpage toegevoegd
 - pending stories en active stories gescheiden in adminpage
+- contact en about verbonden met de andere pagina's

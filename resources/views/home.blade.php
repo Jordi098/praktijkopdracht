@@ -69,6 +69,9 @@
                                         <div class="mt-3 text-gray-200 text-sm leading-relaxed whitespace-pre-line">
                                             {{ $story->text }}
                                         </div>
+                                        <img src="{{ asset('storage/' . $story->file_path) }}" alt="Story Image"
+                                             class="mt-2 max-w-xs rounded text-white">
+                                        <small>Gemaakt door: {{ $story->user->name ?? 'Onbekend' }}</small>
                                     </article>
                                 @endforeach
                             </div>

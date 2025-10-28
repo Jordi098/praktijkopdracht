@@ -10,7 +10,6 @@
                             <p>Category: {{ $story->category->name  }}</p>
                         </div>
                         <img src="{{ asset('storage/' . $story->file_path) }}" alt="Story Image">
-
                         <x-nav-link :href="route('story.index')" :active="request()->routeIs('home')">
                             {{ __('Terug') }}
                         </x-nav-link>

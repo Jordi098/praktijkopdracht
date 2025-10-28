@@ -14,7 +14,7 @@ class StoryController extends Controller
         $search = $request->input('q');
         $activeCategory = $request->input('category');
 
-        $query = Story::with('category')->latest();
+        $query = Story::with('user')->latest();
 
         if (!empty($search)) {
             $query->where(function ($q) use ($search) {
@@ -30,7 +30,6 @@ class StoryController extends Controller
         $query->where('published', true);
 
         $stories = $query->get();
-
         $categories = Category::all();
 
         return view('home', compact('stories', 'search', 'categories', 'activeCategory'));
