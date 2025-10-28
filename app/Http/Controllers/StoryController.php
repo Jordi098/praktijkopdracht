@@ -27,9 +27,7 @@ class StoryController extends Controller
             $query->where('category_id', $activeCategory);
         }
 
-        if (!auth()->check() || !auth()->user()->is_admin) {
-            $query->where('published', true);
-        }
+        $query->where('published', true);
 
         $stories = $query->get();
 
@@ -57,21 +55,25 @@ class StoryController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => 'required|max:100',
-            'text' => 'required'
+        $validated = $request->validate([
+            'title' => 'required|string|max:100',
+            'text' => 'required|string',
+            'category_id' => 'required|exists:categories,id',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,gif,webp'
         ]);
+
+        $path = $request->file('image')->store('images', 'public');
+
         $story = new Story();
-        $story->name = $request->input('title');
-        $story->text = $request->input('text');
-        $story->category_id = $request->input('category_id');
+        $story->name = $validated['title'];
+        $story->text = $validated['text'];
+        $story->category_id = $validated['category_id'];
         $story->user_id = Auth::id();
-
-        $story->published = (auth()->check() && auth()->user()->is_admin) ? true : false;
-
+        $story->published = false;
+        $story->file_path = $path;
         $story->save();
 
-        return redirect()->route('story.index');
+        return redirect()->route('story.index')->with('success', 'Verhaal opgeslagen en in afwachting van goedkeuring.');
     }
 
     public function update(Request $request, Story $story)
@@ -80,19 +82,29 @@ class StoryController extends Controller
             abort(403);
         }
 
-        $request->validate([
+        $validated = $request->validate([
             'title' => 'required|max:100',
             'text' => 'required',
-            'category_id' => 'nullable|exists:categories,id',
+            'category_id' => 'required|exists:categories,id',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,gif,webp',
         ]);
 
-        $story->name = $request->input('title');
-        $story->text = $request->input('text');
-        $story->category_id = $request->input('category_id');
+
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('images', 'public');;
+            $story->file_path = $path;
+        }
+
+        $story->name = $validated['title'];
+        $story->text = $validated['text'];
+        $story->category_id = $validated['category_id'];
+        $story->user_id = Auth::id();
+        $story->published = true;
         $story->save();
 
         return redirect()->route('story.show', $story)->with('success', 'Story updated.');
     }
+
 
     public function destroy(Story $story)
     {

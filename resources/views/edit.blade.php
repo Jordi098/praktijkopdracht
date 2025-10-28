@@ -1,5 +1,5 @@
 <x-app-layout>
-    <form action="{{ route('story.update', $story) }}" method="post">
+    <form action="{{ route('story.update', $story->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -31,8 +31,12 @@
                 @endforeach
             </select>
         </div>
+        <div class="text-white">
+            <label for="image">Afbeelding uploaden:</label>
+            <input type="file" name="image" accept="image/*">
+        </div>
 
-        <x-primary-button type="submit" name="submit" class="text-white">
+        <x-primary-button type="submit" class="text-white">
             Update
         </x-primary-button>
     </form>

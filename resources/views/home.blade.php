@@ -9,7 +9,7 @@
                         name="q"
                         value="{{ $search ?? '' }}"
                         placeholder="Zoek verhalen..."
-                        class="border border-gray-700 bg-gray-800 text-gray-100 rounded-l px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        class="border border-gray-700 bg-gray-800 text-white rounded-l px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                     <input type="hidden" name="category" value="{{ $activeCategory ?? '' }}">
                     <button type="submit"
@@ -24,14 +24,14 @@
                     @endphp
 
                     <a href="{{ route('home', ['q' => request('q')]) }}"
-                       class="{{ $baseTag }} {{ empty($activeCategory) ? 'bg-blue-600 text-white hover:bg-blue-700' : 'bg-gray-700 text-gray-200 hover:bg-gray-600' }}"
+                       class="{{ $baseTag }} {{ empty($activeCategory) ? 'bg-blue-600 text-white hover:bg-blue-700' : 'bg-gray-700 text-white hover:bg-gray-600' }}"
                        aria-pressed="{{ empty($activeCategory) ? 'true' : 'false' }}">
                         Alle
                     </a>
 
                     @foreach($categories as $cat)
                         <a href="{{ route('home', ['q' => request('q'), 'category' => $cat->id]) }}"
-                           class="{{ $baseTag }} {{ (string)($activeCategory ?? '') === (string)$cat->id ? 'bg-blue-600 text-white hover:bg-blue-700' : 'bg-gray-700 text-gray-200 hover:bg-gray-600' }}"
+                           class="{{ $baseTag }} {{ (string)($activeCategory ?? '') === (string)$cat->id ? 'bg-blue-600 text-white hover:bg-blue-700' : 'bg-gray-700 text-white hover:bg-gray-600' }}"
                            aria-pressed="{{ (string)($activeCategory ?? '') === (string)$cat->id ? 'true' : 'false' }}">
                             {{ $cat->name }}
                         </a>

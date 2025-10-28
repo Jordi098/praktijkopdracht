@@ -26,10 +26,9 @@ class EnsureUserIsAdmin
         }
 
         if (!$user || !$isAdmin) {
-            abort(route('story.index'), 'Unauthorized.');
+            return redirect()->route('story.index');
         }
 
         return $next($request);
     }
 }
-

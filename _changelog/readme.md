@@ -78,3 +78,14 @@ Veranderingen:
 Veranderingen:
 
 - Auth systeem verbeterd
+
+## Dinsdag 28 Oktober
+
+Veranderingen:
+
+- Frontend verbeterd met Tailwind CSS
+- adminpage verbeterd
+- images toegevoegd aan stories
+- validatie toegevoegd aan forms voor de images
+- tabs voor adminpage toegevoegd
+- pending stories en active stories gescheiden in adminpage

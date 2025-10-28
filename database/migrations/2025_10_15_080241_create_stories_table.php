@@ -17,6 +17,8 @@ return new class extends Migration {
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->text('text');
             $table->timestamps();
+            $table->boolean('published')->default(false);
+            $table->string('image_path')->nullable();
         });
     }
 

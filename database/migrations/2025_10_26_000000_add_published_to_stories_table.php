@@ -9,7 +9,7 @@ class AddPublishedToStoriesTable extends Migration
     public function up()
     {
         Schema::table('stories', function (Blueprint $table) {
-            $table->boolean('published')->default(true)->after('user_id');
+            $table->boolean('published')->default(false)->after('user_id');
         });
     }
 
@@ -20,4 +20,3 @@ class AddPublishedToStoriesTable extends Migration
         });
     }
 }
-

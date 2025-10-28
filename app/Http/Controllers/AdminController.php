@@ -8,33 +8,40 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    // show pending stories
-    public function index()
+    public function index(Request $request)
     {
-        $pending = Story::with('category')->where('published', false)->latest()->get();
+        // view all stories, pending stories, and trashed stories
+        $tab = $request->get('tab', 'all');
 
-        $trashed = Story::onlyTrashed()->with('category')->latest('deleted_at')->get();
+        $stories = Story::with(['category', 'user'])->latest()->get();
+        $pending = Story::with(['category', 'user'])->where('published', false)->latest()->get();
+        $trashed = Story::onlyTrashed()->with(['category', 'user'])->latest('deleted_at')->get();
 
-        $userIds = $pending->pluck('user_id')->merge($trashed->pluck('user_id'))->unique()->filter()->values()->all();
-        $users = User::whereIn('id', $userIds)->pluck('name', 'id')->toArray();
+        $stories->each(fn($s) => $s->user_name = $s->user->name ?? 'Onbekend');
+        $pending->each(fn($s) => $s->user_name = $s->user->name ?? 'Onbekend');
+        $trashed->each(fn($s) => $s->user_name = $s->user->name ?? 'Onbekend');
 
-        $pending->each(function ($s) use ($users) {
-            $s->user_name = $users[$s->user_id] ?? 'Onbekend';
-        });
-        $trashed->each(function ($s) use ($users) {
-            $s->user_name = $users[$s->user_id] ?? 'Onbekend';
-        });
+        return view('admin.index', compact('stories', 'pending', 'trashed', 'tab'));
 
-        return view('admin.index', compact('pending', 'trashed'));
     }
 
-    // approve a story
+
+// approve (activate) a story
     public function approve(Story $story)
     {
         $story->published = true;
         $story->save();
 
         return redirect()->route('admin.index')->with('success', 'Verhaal goedgekeurd.');
+    }
+
+    // deactivate (unpublish) a story
+    public function deactivate(Story $story)
+    {
+        $story->published = false;
+        $story->save();
+
+        return redirect()->route('admin.index')->with('success', 'Verhaal gedeactiveerd.');
     }
 
     // reject (delete) a story
