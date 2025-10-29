@@ -29,6 +29,12 @@
                         <x-nav-link :href="route('story.create')" :active="request()->routeIs('story.create')">
                             {{ __('Create') }}
                         </x-nav-link>
+                        @if(auth()->user()->deepValidation() >= 3)
+                            <x-nav-link :href="route('story.myStories')"
+                                        :active="request()->routeIs('story.myStories')">
+                                {{ __('My Stories') }}
+                            </x-nav-link>
+                        @endif
 
                         @if(auth()->user()->is_admin)
                             <x-nav-link href="{{ route('admin.index') }}" :active="request()->routeIs('admin.index')">
@@ -125,6 +131,14 @@
                 <x-responsive-nav-link :href="route('story.create')" :active="request()->routeIs('story.create')">
                     {{ __('Create') }}
                 </x-responsive-nav-link>
+                @if(auth()->user()->deepValidation() >= 3)
+                    <x-responsive-nav-link :href="route('story.myStories')"
+                                           :active="request()->routeIs('story.myStories')">
+                        {{ __('My Stories') }}
+                    </x-responsive-nav-link>
+                @endif
+
+
 
                 @if(auth()->user()->is_admin)
                     <x-responsive-nav-link href="{{ route('admin.index') }}"

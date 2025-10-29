@@ -40,6 +40,12 @@ class StoryController extends Controller
         return view('story', compact('story'));
     }
 
+    public function myStories()
+    {
+        $stories = Story::where('user_id', Auth::id())->latest()->get();
+        return view('myStories', compact('stories'));
+    }
+
     public function create()
     {
         $categories = Category::all();
@@ -48,6 +54,9 @@ class StoryController extends Controller
 
     public function edit(Story $story)
     {
+        if ($story->user_id !== Auth::id()) {
+            return redirect()->route('story.index');
+        }
         $categories = Category::all();
         return view('edit', compact('story', 'categories'));
     }
@@ -61,7 +70,11 @@ class StoryController extends Controller
             'image' => 'nullable|image|mimes:jpg,jpeg,png,gif,webp'
         ]);
 
-        $path = $request->file('image')->store('images', 'public');
+        $path = null;
+
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('images', 'public');
+        }
 
         $story = new Story();
         $story->name = $validated['title'];

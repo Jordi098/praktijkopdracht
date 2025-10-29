@@ -90,3 +90,13 @@ Veranderingen:
 - tabs voor adminpage toegevoegd
 - pending stories en active stories gescheiden in adminpage
 - contact en about verbonden met de andere pagina's
+
+## Woensdag 29 Oktober
+
+Veranderingen:
+
+- admin verwijdert nu ook de images van stories
+- mystories pagina toegevoegd waar je al je eigen stories kan zien
+- mystories pagina verbeterd met edit en delete knop
+- route bescherming toegevoegd voor mystories pagina
+- route bescherming toegevoegd voor edit en delete stories

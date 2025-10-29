@@ -46,6 +46,12 @@ Route::middleware(['auth', EnsureUserIsAdmin::class])->group(function () {
 
 });
 Route::middleware('auth')->group(function () {
+    Route::get('story/edit/{story}', [StoryController::class, 'edit'])->name('story.edit');
+    Route::get('story/create', [StoryController::class, 'create'])->name('story.create');
+    Route::post('story/store', [StoryController::class, 'store'])->name('story.store');
+    Route::get('Mystories', [StoryController::class, 'myStories'])->name('story.myStories');
+    Route::put('story/update/{story}', [StoryController::class, 'update'])->name('story.update');
+    Route::delete('story/destroy/{story}', [StoryController::class, 'destroy'])->name('story.destroy');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

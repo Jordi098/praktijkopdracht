@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Story;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
+    // display all stories, pending stories, and trashed stories. And handle tab selection.
     public function index(Request $request)
     {
-        // view all stories, pending stories, and trashed stories
         $tab = $request->get('tab', 'all');
 
         $stories = Story::with(['category', 'user'])->latest()->get();
@@ -65,8 +66,15 @@ class AdminController extends Controller
     public function forceDelete($id)
     {
         $story = Story::onlyTrashed()->findOrFail($id);
+
+        if ($story->file_path && Storage::disk('public')->exists($story->file_path)) {
+            Storage::disk('public')->delete($story->file_path);
+        }
+
         $story->forceDelete();
 
-        return redirect()->route('admin.index')->with('success', 'Verhaal permanent verwijderd.');
+        return redirect()->route('admin.index')
+            ->with('success', 'Verhaal permanent verwijderd.');
     }
+
 }

@@ -8,9 +8,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Story extends Model
 {
-    use HasFactory;
     use SoftDeletes;
 
+    /**
+     * @var \Illuminate\Support\HigherOrderCollectionProxy|mixed
+     */
     protected $casts = [
         'published' => 'boolean',
     ];
